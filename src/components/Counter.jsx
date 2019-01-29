@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { increment, decrement } from "../actions";
 
 const Counter = props => {
-  const incrementIfOdd = () => props.count & 1 === 1 && props.increment();
+  const incrementIfOdd = () => props.count & 1 && props.increment();
   const incrementAsync = () => setTimeout(props.increment, 1000);
 
   // Fill in the two button onClick methods
@@ -20,18 +20,6 @@ const Counter = props => {
       <button onClick={incrementAsync}>Increment async</button>
     </p>
   );
-}
-
-// The mapStateToProps function specifies which portion of the
-// state tree this component needs to receive. In this case,
-// since our redux store is only storing the value of the count,
-// this component receives the whole state. In a more complex
-// redux application, though, it would receive only the relevant
-// parts it needs from the state object.
-const mapStateToProps = state => {
-  return {
-    count: state.count
-  };
 };
 
 // The connect function is called in order to make this component aware
@@ -40,6 +28,12 @@ const mapStateToProps = state => {
 // are reliant on Redux, along with the component itself, so that Redux
 // makes itself known to this component.
 export default connect(
-  mapStateToProps,
+  // The mapStateToProps function specifies which portion of the
+  // state tree this component needs to receive. In this case,
+  // since our redux store is only storing the value of the count,
+  // this component receives the whole state. In a more complex
+  // redux application, though, it would receive only the relevant
+  // parts it needs from the state object.
+  count => ({ count }), // mapStateToProps anonymous callback
   { increment, decrement }
 )(Counter);
