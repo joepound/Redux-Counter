@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import Counter from './components/Counter';
+
 import counter from './reducers';
+
+import Counter from './components/Counter.jsx';
 
 // This line instantiates our central Redux store.
 // The `createStore` function receives the reducer
